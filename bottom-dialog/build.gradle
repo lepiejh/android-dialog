@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.lixiong'
+
+android {
+    compileSdkVersion 30
+    def encrypt_key = "\"123456789e12345abcdefQhYJ5FHgkro\""
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 30
+    }
+    buildFeatures{
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String","ENCRYPT_KEY","${encrypt_key}"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String","ENCRYPT_KEY","${encrypt_key}"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly 'com.github.lepiejh:android-framework:v1.0.5'
+    compileOnly 'androidx.constraintlayout:constraintlayout:2.1.4'
+}
