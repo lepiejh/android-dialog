@@ -54,6 +54,40 @@ object DecimalUtils {
         }
     }
 
+    fun decimalAddFormat(a : String?,b : String?) : String{
+        if (a.isNullOrEmpty()){
+            if (b.isNullOrEmpty()){
+                return "0.00"
+            }else{
+                DecimalFormat("").let { df ->
+                    return try {
+                        df.format(BigDecimal(b))
+                    } catch (e: Exception) {
+                        b
+                    }
+                }
+            }
+        }else{
+            if (b.isNullOrEmpty()){
+                DecimalFormat("").let { df ->
+                    return try {
+                        df.format(BigDecimal(a))
+                    } catch (e: Exception) {
+                        a
+                    }
+                }
+            }else{
+                DecimalFormat("").let { df ->
+                    return try {
+                        df.format(BigDecimal(a).add(BigDecimal(b)))
+                    } catch (e: Exception) {
+                        BigDecimal(a).add(BigDecimal(b)).toString()
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * 两个数乘法
      */
