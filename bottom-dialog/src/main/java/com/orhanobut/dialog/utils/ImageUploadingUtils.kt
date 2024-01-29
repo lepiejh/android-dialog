@@ -48,17 +48,16 @@ class ImageUploadingUtils private constructor() {
         } else true
     }
 
-    /**
-     * s1="拍照"   s2="从手机相册中选择"
-     */
-    fun showDialogPublishType(activity: Activity,fm: FragmentManager,s1:String,s2:String,onImagePath :(String)->Unit)
+    fun showDialogPublishType(activity: Activity,fm: FragmentManager,s1:String = "拍照",s2:String="从手机相册中选择",s3:String="取消",onImagePath :(String)->Unit)
     {
         ViewDialog.newInstance().setLayoutId(R.layout.dialog_select_publish_dynamics_type).setConvertListener { holder, dialog ->
 
           val tv1=  holder.getView<TextView>(R.id.tvImage)
           val tv2=  holder.getView<TextView>(R.id.tvVideo)
+          val tv3=  holder.getView<TextView>(R.id.tvClose)
             tv1.text=s1
             tv2.text=s2
+            tv3.text=s3
             tv1.setOnClickListener {
                 dialog.dismiss()
                 takePhoto(activity)
