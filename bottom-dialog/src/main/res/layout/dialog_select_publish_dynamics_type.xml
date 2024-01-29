@@ -33,7 +33,7 @@
             android:layout_height="5dp"/>
         <TextView
             android:id="@+id/tvClose"
-            android:textColor="#FF3F02"
+            android:textColor="#999999"
             android:textSize="16sp"
             android:gravity="center"
             android:text="取消"
