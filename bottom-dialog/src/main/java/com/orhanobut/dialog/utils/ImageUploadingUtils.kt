@@ -48,8 +48,10 @@ class ImageUploadingUtils private constructor() {
         } else true
     }
 
-
-      fun showDialogPublishType(activity: Activity,fm: FragmentManager,s1:String,s2:String,onImagePath :(String)->Unit)
+    /**
+     * s1="拍照"   s2="从手机相册中选择"
+     */
+    fun showDialogPublishType(activity: Activity,fm: FragmentManager,s1:String,s2:String,onImagePath :(String)->Unit)
     {
         ViewDialog.newInstance().setLayoutId(R.layout.dialog_select_publish_dynamics_type).setConvertListener { holder, dialog ->
 
