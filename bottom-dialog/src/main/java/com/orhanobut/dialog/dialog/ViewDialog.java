@@ -6,11 +6,6 @@ import com.orhanobut.dialog.listener.ViewConvertListener;
 
 import androidx.annotation.LayoutRes;
 
-/**
- * @Des syyk_android
- * @Time 2023/10/11
- * @Author Peng-BinBin
- **/
 public class ViewDialog extends BaseDialog {
 
     private ViewConvertListener convertListener;

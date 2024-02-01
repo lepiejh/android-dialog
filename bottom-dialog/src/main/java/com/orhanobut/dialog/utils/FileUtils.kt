@@ -49,7 +49,7 @@ class FileUtils {
         // 首先保存图片
         val file =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absoluteFile //注意小米手机必须这样获得public绝对路径
-        var fileName = "syyk"
+        var fileName = "yyfl"
         val appDir = File(file, fileName)
         if (!appDir.exists()) {
             appDir.mkdirs()
