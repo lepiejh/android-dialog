@@ -46,4 +46,6 @@ dependencies {
     compileOnly 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'com.github.getActivity:XXPermissions:18.5'
     api 'io.github.lucksiege:pictureselector:v3.11.1'
+    //图片压缩
+    api 'top.zibin:Luban:1.1.8'
 }
