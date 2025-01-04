@@ -14,7 +14,7 @@ object DecimalUtils {
                 return try {
                     df.format(StringUtils.parseDouble(decimal))
                 } catch (e: Exception) {
-                    decimal
+                    "0.00"
                 }
             }
         }
@@ -29,7 +29,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(b))
                     } catch (e: Exception) {
-                        b
+                        "0.00"
                     }
                 }
             }
@@ -39,7 +39,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a))
                     } catch (e: Exception) {
-                        a
+                        "0.00"
                     }
                 }
             }else{
