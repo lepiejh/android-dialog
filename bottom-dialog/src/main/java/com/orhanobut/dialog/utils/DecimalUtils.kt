@@ -47,7 +47,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a).add(BigDecimal(b)))
                     } catch (e: Exception) {
-                        BigDecimal(a).add(BigDecimal(b)).toString()
+                        "0.00"
                     }
                 }
             }
@@ -63,7 +63,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(b))
                     } catch (e: Exception) {
-                        b
+                        "0.00"
                     }
                 }
             }
@@ -73,7 +73,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a))
                     } catch (e: Exception) {
-                        a
+                        "0.00"
                     }
                 }
             }else{
@@ -81,7 +81,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a).add(BigDecimal(b)))
                     } catch (e: Exception) {
-                        BigDecimal(a).add(BigDecimal(b)).toString()
+                        "0.00"
                     }
                 }
             }
@@ -100,7 +100,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(b))
                     } catch (e: Exception) {
-                        b
+                        "0.00"
                     }
                 }
             }
@@ -110,7 +110,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a))
                     } catch (e: Exception) {
-                        a
+                        "0.00"
                     }
                 }
             }else{
@@ -118,7 +118,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a).multiply(BigDecimal(b)))
                     } catch (e: Exception) {
-                        BigDecimal(a).multiply(BigDecimal(b)).toString()
+                        "0.00"
                     }
                 }
             }
@@ -137,7 +137,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(b))
                     } catch (e: Exception) {
-                        b
+                        "0.00"
                     }
                 }
             }
@@ -147,7 +147,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a))
                     } catch (e: Exception) {
-                        a
+                        "0.00"
                     }
                 }
             }else{
@@ -155,7 +155,7 @@ object DecimalUtils {
                     return try {
                         df.format(BigDecimal(a).subtract(BigDecimal(b)))
                     } catch (e: Exception) {
-                        BigDecimal(a).subtract(BigDecimal(b)).toString()
+                        "0.00"
                     }
                 }
             }
