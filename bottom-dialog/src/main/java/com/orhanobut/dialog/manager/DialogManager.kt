@@ -16,7 +16,7 @@ class DialogManager private constructor(){
 
     private var mDialog: LoadDialog? = null
 
-    fun showProgressDialog(context: Context?,hint: String = "加载中...") {
+    fun showProgressDialog(context: Context?,hint: String) {
         releaseDialog()
         mDialog = LoadDialog(context, hint,R.style.dialog)
         mDialog?.setCancelable(false)
