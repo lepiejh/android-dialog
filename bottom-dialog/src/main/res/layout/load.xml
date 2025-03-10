@@ -21,10 +21,10 @@
             android:src="@drawable/ic_load"/>
 
         <TextView
+            android:id="@+id/tv_hint"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:textSize="14sp"
-            android:text="加载中..."
             android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

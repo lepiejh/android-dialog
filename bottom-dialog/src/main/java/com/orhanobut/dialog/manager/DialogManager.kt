@@ -1,45 +1,39 @@
-package com.orhanobut.dialog.manager;
+package com.orhanobut.dialog.manager
 
-import android.content.Context;
+import android.content.Context
+import com.orhanobut.dialog.R
+import com.orhanobut.dialog.dialog.LoadDialog
 
-import com.orhanobut.dialog.R;
-import com.orhanobut.dialog.dialog.LoadDialog;
+class DialogManager private constructor(){
 
-
-/**
- * Created by SLAN on 2016/7/8.
- * <p/>
- */
-public enum DialogManager
-{
-    INSTANCE;
-
-    private LoadDialog mDialog;
-
-    public void showProgressDialog(Context context)
-    {
-        releaseDialog();
-        mDialog = new LoadDialog(context, R.style.dialog);
-        mDialog.setCancelable(false);
-
-        mDialog.show();
+    companion object {
+        val instance: DialogManager by lazy { Holder.INSTANCE }
     }
 
-    private void releaseDialog()
-    {
-        if (mDialog != null)
-        {
-            mDialog.dismiss();
-            mDialog = null;
+    private object Holder {
+        val INSTANCE = DialogManager()
+    }
+
+    private var mDialog: LoadDialog? = null
+
+    fun showProgressDialog(context: Context?,hint: String = "加载中...") {
+        releaseDialog()
+        mDialog = LoadDialog(context, hint,R.style.dialog)
+        mDialog?.setCancelable(false)
+        mDialog?.show()
+    }
+
+    private fun releaseDialog() {
+        if (mDialog != null) {
+            mDialog?.dismiss()
+            mDialog = null
         }
     }
 
-    public void dismiss()
-    {
-        if (mDialog != null && mDialog.isShowing())
-        {
-            mDialog.dismiss();
-            mDialog = null;
+    fun dismiss() {
+        if (mDialog != null && mDialog?.isShowing == true) {
+            mDialog?.dismiss()
+            mDialog = null
         }
     }
 }

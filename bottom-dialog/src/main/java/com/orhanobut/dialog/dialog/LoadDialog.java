@@ -7,18 +7,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.orhanobut.dialog.R;
 
 public class LoadDialog extends AlertDialog
 {
-    private Context context;
+    private Context mContext;
+    private String mHint;
 
-
-    public LoadDialog(Context context, int theme)
+    public LoadDialog(Context context,String hint, int theme)
     {
         super(context, theme);
-        this.context = context;
+        this.mContext = context;
+        this.mHint = hint;
     }
 
     public LoadDialog(Context context)
@@ -31,7 +33,7 @@ public class LoadDialog extends AlertDialog
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.load);
-        initView(context);
+        initView(mContext);
     }
 
     private void initView(Context context)
@@ -40,6 +42,8 @@ public class LoadDialog extends AlertDialog
         LinearInterpolator lin = new LinearInterpolator();
         operatingAnim.setInterpolator(lin);
         ImageView iv_load = (ImageView) findViewById(R.id.iv_load);
+        TextView tv_hint = (TextView) findViewById(R.id.tv_hint);
         iv_load.setAnimation(operatingAnim);
+        tv_hint.setText(mHint);
     }
 }
