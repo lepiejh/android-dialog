@@ -32,7 +32,7 @@ class BottomListDialog : TouchOutsideDialog {
         if (data.size >= 7) {
             this.window?.setLayout(
                     WindowManager.LayoutParams.MATCH_PARENT,
-                    DpiUtils.dip2px(mContext, 45 * 8)
+                    DpiUtils.dip2px(mContext, 45 * 9)
                 )
         } else {
             this.window?.setLayout(
