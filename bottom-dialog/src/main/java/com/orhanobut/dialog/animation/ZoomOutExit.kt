@@ -1,15 +1,14 @@
-package com.orhanobut.dialog.animation;
+package com.orhanobut.dialog.animation
 
-import android.animation.ObjectAnimator;
-import android.view.View;
+import android.view.View
+import android.animation.ObjectAnimator
 
-
-public class ZoomOutExit extends BaseAnimatorSet {
-	@Override
-	public void setAnimation(View view) {
-		animatorSet.playTogether(//
-				ObjectAnimator.ofFloat(view, "alpha", 1, 0, 0),//
-				ObjectAnimator.ofFloat(view, "scaleX", 1, 0.3f, 0),//
-				ObjectAnimator.ofFloat(view, "scaleY", 1, 0.3f, 0));//
-	}
+class ZoomOutExit : BaseAnimatorSet() {
+    override fun setAnimation(view: View?) {
+        animatorSet.playTogether(
+            ObjectAnimator.ofFloat(view, "alpha", 1f, 0f, 0f),  //
+            ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.3f, 0f),  //
+            ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.3f, 0f)
+        ) //
+    }
 }

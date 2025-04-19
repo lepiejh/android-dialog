@@ -15,7 +15,7 @@ import com.ved.framework.utils.ToastUtils
 /**
  * Dialog通用样式
  */
-open abstract class BaseDialog : DialogFragment() {
+abstract class BaseDialog : DialogFragment() {
     @JvmField
     @LayoutRes
     protected var mLayoutResId = 0
