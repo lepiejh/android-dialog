@@ -27,19 +27,19 @@ abstract class BaseAnimatorSet {
         if (listener != null) {
             animatorSet.addListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animator: Animator) {
-                    listener!!.onAnimationStart(animator)
+                    listener?.onAnimationStart(animator)
                 }
 
                 override fun onAnimationRepeat(animator: Animator) {
-                    listener!!.onAnimationRepeat(animator)
+                    listener?.onAnimationRepeat(animator)
                 }
 
                 override fun onAnimationEnd(animator: Animator) {
-                    listener!!.onAnimationEnd(animator)
+                    listener?.onAnimationEnd(animator)
                 }
 
                 override fun onAnimationCancel(animator: Animator) {
-                    listener!!.onAnimationCancel(animator)
+                    listener?.onAnimationCancel(animator)
                 }
             })
         }
