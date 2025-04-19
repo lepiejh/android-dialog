@@ -1,21 +1,15 @@
 package com.orhanobut.dialog.base
 
 import android.content.Context
-import androidx.annotation.LayoutRes
 import android.os.Bundle
-import com.orhanobut.dialog.R
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.view.Gravity
+import android.view.*
 import androidx.annotation.FloatRange
+import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
-import java.lang.Exception
-import android.util.DisplayMetrics
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.orhanobut.dialog.R
+import com.ved.framework.utils.ScreenUtils
 import com.ved.framework.utils.ToastUtils
 
 /**
@@ -67,7 +61,7 @@ open abstract class BaseDialog : DialogFragment() {
     }
 
     private fun initParams() {
-        val window = dialog!!.window
+        val window = dialog?.window
         if (window != null) {
             val params = window.attributes
             params.dimAmount = mDimAmount
@@ -79,18 +73,17 @@ open abstract class BaseDialog : DialogFragment() {
 
             //设置dialog宽度
             if (mWidth == 0) {
-                params.width = getScreenWidth(context) - 2 * dp2px(
-                    context, mMargin.toFloat()
+                params.width = ScreenUtils.getScreenWidth() - 2 * ScreenUtils.dp2px(mMargin.toFloat()
                 )
             } else {
-                params.width = dp2px(context, mWidth.toFloat())
+                params.width = ScreenUtils.dp2px(mWidth.toFloat())
             }
 
             //设置dialog高度
             if (mHeight == 0) {
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT
             } else {
-                params.height = dp2px(context, mHeight.toFloat())
+                params.height = ScreenUtils.dp2px(mHeight.toFloat())
             }
 
             //设置dialog动画
@@ -172,7 +165,9 @@ open abstract class BaseDialog : DialogFragment() {
 
     fun show(manager: FragmentManager?): BaseDialog {
         try {
-            super.show(manager!!, System.currentTimeMillis().toString())
+            if (manager != null) {
+                super.show(manager, System.currentTimeMillis().toString())
+            }
         } catch (e: Exception) {
             ToastUtils.showShort(e.message)
         }
@@ -193,22 +188,4 @@ open abstract class BaseDialog : DialogFragment() {
      * @param dialog
      */
     abstract fun convertView(holder: DialogViewHolder?, dialog: BaseDialog?)
-
-    companion object {
-        /**
-         * 获取屏幕宽度
-         *
-         * @param context
-         * @return
-         */
-        fun getScreenWidth(context: Context?): Int {
-            val displayMetrics = context!!.resources.displayMetrics
-            return displayMetrics.widthPixels
-        }
-
-        fun dp2px(context: Context?, dipValue: Float): Int {
-            val scale = context!!.resources.displayMetrics.density
-            return (dipValue * scale + 0.5f).toInt()
-        }
-    }
 }
