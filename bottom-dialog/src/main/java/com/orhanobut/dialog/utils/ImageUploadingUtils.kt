@@ -69,10 +69,10 @@ class ImageUploadingUtils private constructor() {
                 val tv1 = holder.getView<TextView>(R.id.tvImage)
                 val tv2 = holder.getView<TextView>(R.id.tvVideo)
                 val tv3 = holder.getView<TextView>(R.id.tvClose)
-                tv1.text = s1
-                tv2.text = s2
-                tv3.text = s3
-                tv1.setOnClickListener {
+                tv1?.text = s1
+                tv2?.text = s2
+                tv3?.text = s3
+                tv1?.setOnClickListener {
                     dialog.dismiss()
                     takePhoto(activity)
                     {
@@ -80,11 +80,11 @@ class ImageUploadingUtils private constructor() {
                     }
 
                 }
-                tv2.setOnClickListener {
+                tv2?.setOnClickListener {
                     dialog.dismiss()
                     openImage(activity)
                 }
-                holder.getView<TextView>(R.id.tvClose).setOnClickListener {
+                holder.getView<TextView>(R.id.tvClose)?.setOnClickListener {
                     dialog.dismiss()
                 }
 
