@@ -1,113 +1,106 @@
-package com.orhanobut.dialog.base;
+package com.orhanobut.dialog.base
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-
-import com.orhanobut.dialog.R;
-import com.ved.framework.utils.ToastUtils;
-
-import androidx.annotation.FloatRange;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.content.Context
+import androidx.annotation.LayoutRes
+import android.os.Bundle
+import com.orhanobut.dialog.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.view.Gravity
+import androidx.annotation.FloatRange
+import androidx.annotation.StyleRes
+import java.lang.Exception
+import android.util.DisplayMetrics
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.ved.framework.utils.ToastUtils
 
 /**
  * Dialog通用样式
  */
-public abstract class BaseDialog extends DialogFragment
-{
-
+open abstract class BaseDialog : DialogFragment() {
+    @JvmField
     @LayoutRes
-    protected int mLayoutResId;
+    protected var mLayoutResId = 0
+    private var mDimAmount = 0.5f //背景昏暗度
+    private var mShowBottomEnable //是否底部显示
+            = false
+    private var mMargin = 0 //左右边距
+    private var mAnimStyle = 1 //进入退出动画
+    private var mOutCancel = true //点击外部取消
+    private var mContext: Context? = null
+    private var mWidth = 0
+    private var mHeight = 0
+    lateinit var mOnOk: () -> Unit
 
-    private float mDimAmount = 0.5f;//背景昏暗度
-    private boolean mShowBottomEnable;//是否底部显示
-    private int mMargin = 0;//左右边距
-    private int mAnimStyle = 1;//进入退出动画
-    private boolean mOutCancel = true;//点击外部取消
-    private Context mContext;
-    private int mWidth;
-    private int mHeight;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-
-
+    fun setOnOkCallBack(onSure: () -> Unit){
+        mOnOk = onSure
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BaseDialog);
-        mLayoutResId = setUpLayoutId();
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(mLayoutResId, container, false);
-        convertView(DialogViewHolder.create(view), this);
-        return view;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_TITLE, R.style.BaseDialog)
+        mLayoutResId = setUpLayoutId()
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        initParams();
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(mLayoutResId, container, false)
+        convertView(DialogViewHolder.create(view), this)
+        return view
     }
 
-    private void initParams()
-    {
-        Window window = getDialog().getWindow();
+    override fun onStart() {
+        super.onStart()
+        initParams()
+    }
 
-
+    private fun initParams() {
+        val window = dialog!!.window
         if (window != null) {
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = mDimAmount;
+            val params = window.attributes
+            params.dimAmount = mDimAmount
 
             //设置dialog显示位置
             if (mShowBottomEnable) {
-                params.gravity = Gravity.BOTTOM;
+                params.gravity = Gravity.BOTTOM
             }
 
             //设置dialog宽度
             if (mWidth == 0) {
-                params.width = getScreenWidth(getContext()) - 2 * dp2px(getContext(), mMargin);
+                params.width = getScreenWidth(context) - 2 * dp2px(
+                    context, mMargin.toFloat()
+                )
             } else {
-                params.width = dp2px(getContext(), mWidth);
+                params.width = dp2px(context, mWidth.toFloat())
             }
 
             //设置dialog高度
             if (mHeight == 0) {
-                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT
             } else {
-                params.height = dp2px(getContext(), mHeight);
+                params.height = dp2px(context, mHeight.toFloat())
             }
 
             //设置dialog动画
             if (mAnimStyle != 0) {
-              window.setWindowAnimations(mAnimStyle);
-
+                window.setWindowAnimations(mAnimStyle)
             }
-
-            window.setAttributes(params);
+            window.attributes = params
         }
-        setCancelable(mOutCancel);
+        isCancelable = mOutCancel
     }
-
-
-
 
     /**
      * 设置背景昏暗度
@@ -115,9 +108,9 @@ public abstract class BaseDialog extends DialogFragment
      * @param dimAmount
      * @return
      */
-    public BaseDialog setDimAmout(@FloatRange(from = 0, to = 1) float dimAmount) {
-        mDimAmount = dimAmount;
-        return this;
+    fun setDimAmout(@FloatRange(from = 0.0, to = 1.0) dimAmount: Float): BaseDialog {
+        mDimAmount = dimAmount
+        return this
     }
 
     /**
@@ -126,14 +119,10 @@ public abstract class BaseDialog extends DialogFragment
      * @param showBottom
      * @return
      */
-    public BaseDialog setShowBottom(boolean showBottom) {
-        mShowBottomEnable = showBottom;
-        return this;
+    fun setShowBottom(showBottom: Boolean): BaseDialog {
+        mShowBottomEnable = showBottom
+        return this
     }
-
-
-
-
 
     /**
      * 设置宽高
@@ -142,10 +131,10 @@ public abstract class BaseDialog extends DialogFragment
      * @param height
      * @return
      */
-    public BaseDialog setSize(int width, int height) {
-        mWidth = width;
-        mHeight = height;
-        return this;
+    fun setSize(width: Int, height: Int): BaseDialog {
+        mWidth = width
+        mHeight = height
+        return this
     }
 
     /**
@@ -154,9 +143,9 @@ public abstract class BaseDialog extends DialogFragment
      * @param margin
      * @return
      */
-    public BaseDialog setMargin(int margin) {
-        mMargin = margin;
-        return this;
+    fun setMargin(margin: Int): BaseDialog {
+        mMargin = margin
+        return this
     }
 
     /**
@@ -165,9 +154,9 @@ public abstract class BaseDialog extends DialogFragment
      * @param animStyle
      * @return
      */
-    public BaseDialog setAnimStyle(@StyleRes int animStyle) {
-        mAnimStyle = animStyle;
-        return this;
+    fun setAnimStyle(@StyleRes animStyle: Int): BaseDialog {
+        mAnimStyle = animStyle
+        return this
     }
 
     /**
@@ -176,19 +165,18 @@ public abstract class BaseDialog extends DialogFragment
      * @param outCancel
      * @return
      */
-    public BaseDialog setOutCancel(boolean outCancel) {
-        mOutCancel = outCancel;
-        return this;
+    fun setOutCancel(outCancel: Boolean): BaseDialog {
+        mOutCancel = outCancel
+        return this
     }
 
-    public BaseDialog show(FragmentManager manager) {
+    fun show(manager: FragmentManager?): BaseDialog {
         try {
-            super.show(manager, String.valueOf(System.currentTimeMillis()));
-        }catch (Exception e)
-        {
-            ToastUtils.showShort(e.getMessage());
+            super.show(manager!!, System.currentTimeMillis().toString())
+        } catch (e: Exception) {
+            ToastUtils.showShort(e.message)
         }
-        return this;
+        return this
     }
 
     /**
@@ -196,7 +184,7 @@ public abstract class BaseDialog extends DialogFragment
      *
      * @return
      */
-    public abstract int setUpLayoutId();
+    abstract fun setUpLayoutId(): Int
 
     /**
      * 操作dialog布局
@@ -204,23 +192,23 @@ public abstract class BaseDialog extends DialogFragment
      * @param holder
      * @param dialog
      */
-    public abstract void convertView(DialogViewHolder holder, BaseDialog dialog);
+    abstract fun convertView(holder: DialogViewHolder?, dialog: BaseDialog?)
 
-    /**
-     * 获取屏幕宽度
-     *
-     * @param context
-     * @return
-     */
-    public static int getScreenWidth(Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return displayMetrics.widthPixels;
+    companion object {
+        /**
+         * 获取屏幕宽度
+         *
+         * @param context
+         * @return
+         */
+        fun getScreenWidth(context: Context?): Int {
+            val displayMetrics = context!!.resources.displayMetrics
+            return displayMetrics.widthPixels
+        }
+
+        fun dp2px(context: Context?, dipValue: Float): Int {
+            val scale = context!!.resources.displayMetrics.density
+            return (dipValue * scale + 0.5f).toInt()
+        }
     }
-
-    public static int dp2px(Context context, float dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
-
-
 }
