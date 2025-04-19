@@ -1,24 +1,12 @@
-package com.orhanobut.dialog.base;
+package com.orhanobut.dialog.base
 
-import android.util.SparseArray;
-import android.view.View;
-import android.widget.TextView;
+import android.view.View
+import android.util.SparseArray
+import androidx.annotation.IdRes
+import android.widget.TextView
 
-import androidx.annotation.IdRes;
-
-public class DialogViewHolder
-{
-    private SparseArray<View> views;
-    private View convertView;
-
-    private DialogViewHolder(View view) {
-        convertView = view;
-        views = new SparseArray<>();
-    }
-
-    public static DialogViewHolder create(View view) {
-        return new DialogViewHolder(view);
-    }
+class DialogViewHolder private constructor(private val convertView: View) {
+    private val views: SparseArray<View?> = SparseArray()
 
     /**
      * 获取View
@@ -26,14 +14,14 @@ public class DialogViewHolder
      * @param viewId
      * @param <T>
      * @return
-     */
-    public <T extends View> T getView(@IdRes int viewId) {
-        View view = views.get(viewId);
+    </T> */
+    fun <T : View?> getView(@IdRes viewId: Int): T? {
+        var view = views[viewId]
         if (view == null) {
-            view = convertView.findViewById(viewId);
-            views.put(viewId, view);
+            view = convertView.findViewById(viewId)
+            views.put(viewId, view)
         }
-        return (T) view;
+        return view as T?
     }
 
     /**
@@ -42,9 +30,9 @@ public class DialogViewHolder
      * @param viewId
      * @param text
      */
-    public void setText(int viewId, String text) {
-        TextView textView = getView(viewId);
-        textView.setText(text);
+    fun setText(viewId: Int, text: String?) {
+        val textView = getView<TextView>(viewId)!!
+        textView.text = text
     }
 
     /**
@@ -53,9 +41,9 @@ public class DialogViewHolder
      * @param viewId
      * @param colorId
      */
-    public void setTextColor(int viewId, int colorId) {
-        TextView textView = getView(viewId);
-        textView.setTextColor(colorId);
+    fun setTextColor(viewId: Int, colorId: Int) {
+        val textView = getView<TextView>(viewId)!!
+        textView.setTextColor(colorId)
     }
 
     /**
@@ -64,9 +52,9 @@ public class DialogViewHolder
      * @param viewId
      * @param resId
      */
-    public void setBackgroundResource(int viewId, int resId) {
-        View view = getView(viewId);
-        view.setBackgroundResource(resId);
+    fun setBackgroundResource(viewId: Int, resId: Int) {
+        val view = getView<View>(viewId)!!
+        view.setBackgroundResource(resId)
     }
 
     /**
@@ -75,9 +63,9 @@ public class DialogViewHolder
      * @param viewId
      * @param colorId
      */
-    public void setBackgroundColor(int viewId, int colorId) {
-        View view = getView(viewId);
-        view.setBackgroundColor(colorId);
+    fun setBackgroundColor(viewId: Int, colorId: Int) {
+        val view = getView<View>(viewId)!!
+        view.setBackgroundColor(colorId)
     }
 
     /**
@@ -86,8 +74,14 @@ public class DialogViewHolder
      * @param viewId
      * @param listener
      */
-    public void setOnClickListener(int viewId, View.OnClickListener listener) {
-        View view = getView(viewId);
-        view.setOnClickListener(listener);
+    fun setOnClickListener(viewId: Int, listener: View.OnClickListener?) {
+        val view = getView<View>(viewId)!!
+        view.setOnClickListener(listener)
+    }
+
+    companion object {
+        fun create(view: View): DialogViewHolder {
+            return DialogViewHolder(view)
+        }
     }
 }
