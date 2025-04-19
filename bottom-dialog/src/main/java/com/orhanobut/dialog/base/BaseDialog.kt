@@ -34,9 +34,9 @@ open abstract class BaseDialog : DialogFragment() {
     private var mContext: Context? = null
     private var mWidth = 0
     private var mHeight = 0
-    lateinit var mOnOk: () -> Unit
+    lateinit var mOnOk: (value: String?) -> Unit
 
-    fun setOnOkCallBack(onSure: () -> Unit){
+    fun setOnOkCallBack(onSure: (value: String?) -> Unit){
         mOnOk = onSure
     }
 
