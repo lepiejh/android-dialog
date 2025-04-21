@@ -1,19 +1,19 @@
-package com.orhanobut.dialog.animation;
+package com.orhanobut.dialog.animation
 
-import android.animation.ObjectAnimator;
-import android.util.DisplayMetrics;
-import android.view.View;
+import android.animation.ObjectAnimator
+import android.view.View
+import com.ved.framework.utils.StringUtils
 
+class BounceBottomEnter : BaseAnimatorSet() {
+    init {
+        duration = 600
+    }
 
-public class BounceBottomEnter extends BaseAnimatorSet {
-	public BounceBottomEnter() {
-		duration = 600;
-	}
-
-	@Override
-	public void setAnimation(View view) {
-		DisplayMetrics dm = view.getContext().getResources().getDisplayMetrics();
-		animatorSet.playTogether(ObjectAnimator.ofFloat(view, "alpha", 0, 1, 1, 1),//
-				ObjectAnimator.ofFloat(view, "translationY", 250 * dm.density, -30, 10, 0));
-	}
+    override fun setAnimation(view: View?) {
+        val dm = view?.context?.resources?.displayMetrics
+        animatorSet.playTogether(
+            ObjectAnimator.ofFloat(view, "alpha", 0f, 1f, 1f, 1f),  //
+            ObjectAnimator.ofFloat(view, "translationY", 250 * StringUtils.parseFloat(dm?.density), -30f, 10f, 0f)
+        )
+    }
 }

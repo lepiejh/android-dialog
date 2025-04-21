@@ -40,9 +40,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    compileOnly 'com.github.lepiejh:android-mvvm:v0.0.43'
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+//    compileOnly 'androidx.appcompat:appcompat:1.5.1'
+    compileOnly 'com.github.lepiejh:android-mvvm:v0.0.70'
     compileOnly 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'com.github.getActivity:XXPermissions:18.5'
     api 'io.github.lucksiege:pictureselector:v3.11.1'
