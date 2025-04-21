@@ -14,7 +14,7 @@ abstract class BaseAnimatorSet {
     private var delay: Long = 0
     private var listener: AnimatorListener? = null
     abstract fun setAnimation(view: View?)
-    protected fun start(view: View) {
+    private fun start(view: View?) {
         reset(view)
         setAnimation(view)
         animatorSet.duration = duration
@@ -71,7 +71,7 @@ abstract class BaseAnimatorSet {
     }
 
     /** 在View上执行动画  */
-    fun playOn(view: View) {
+    fun playOn(view: View?) {
         start(view)
     }
 
@@ -83,15 +83,15 @@ abstract class BaseAnimatorSet {
     }
 
     companion object {
-        fun reset(view: View) {
-            view.alpha = 1f
-            view.scaleX = 1f
-            view.scaleY = 1f
-            view.translationX = 0f
-            view.translationY = 0f
-            view.rotation = 0f
-            view.rotationY = 0f
-            view.rotationX = 0f
+        fun reset(view: View?) {
+            view?.alpha = 1f
+            view?.scaleX = 1f
+            view?.scaleY = 1f
+            view?.translationX = 0f
+            view?.translationY = 0f
+            view?.rotation = 0f
+            view?.rotationY = 0f
+            view?.rotationX = 0f
         }
     }
 }
