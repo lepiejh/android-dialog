@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.dialog.R
-import com.orhanobut.dialog.listener.IBottomDialogListener
 import com.orhanobut.dialog.mode.BottomListMode
 import com.ved.framework.bus.RxBus
 import com.ved.framework.utils.Constant
 
 class BottomListAdapter(private val mData: MutableList<BottomListMode?>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var bottomDialogListener: IBottomDialogListener? = null
-    fun setBottomDialogListener(bottomDialogListener: IBottomDialogListener?) {
+    private lateinit var bottomDialogListener: (view: View?) -> Unit
+    fun setBottomDialogListener(bottomDialogListener: (view: View?) -> Unit) {
         this.bottomDialogListener = bottomDialogListener
     }
 
@@ -69,9 +68,7 @@ class BottomListAdapter(private val mData: MutableList<BottomListMode?>?) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is FootViewHolder) {
             holder.tvCancel?.setOnClickListener { view: View? ->
-                if (bottomDialogListener != null) {
-                    bottomDialogListener?.onClick(view)
-                }
+                bottomDialogListener.invoke(view)
             }
         } else if (holder is BottomListViewHolder) {
             mData?.getOrNull(position)?.let { bottomListMode ->

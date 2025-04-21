@@ -3,13 +3,11 @@ package com.orhanobut.dialog.dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.dialog.R
 import com.orhanobut.dialog.adapter.BottomListAdapter
-import com.orhanobut.dialog.listener.IBottomDialogListener
 import com.orhanobut.dialog.mode.BottomListMode
 import com.ved.framework.utils.DpiUtils
 import com.ved.framework.widget.TouchOutsideDialog
@@ -50,11 +48,9 @@ class BottomListDialog : TouchOutsideDialog {
         val rvOutboundCall: RecyclerView = findViewById(R.id.rv_outbound_call)
         rvOutboundCall.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
         bottomListAdapter = BottomListAdapter(ArrayList())
-        bottomListAdapter?.setBottomDialogListener(object : IBottomDialogListener {
-            override fun onClick(view: View?) {
-                dismiss()
-            }
-        })
+        bottomListAdapter?.setBottomDialogListener {
+            dismiss()
+        }
         rvOutboundCall.adapter = bottomListAdapter
     }
 
