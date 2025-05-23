@@ -12,14 +12,6 @@ import java.util.List;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-/**
- * 类  描   述:适配器基类，子类适配器继承此基类只要重写getView方法即可
- * 类  名   称:BaseUiAdapter
- * 所属包名 :com.yd.adapter
- * 创   建  人:pchp
- * 创建时间 :2016年5月1日 上午12:26:11
- * @param <T>
- */
 public abstract class DataBindingAdapter<T,B extends ViewDataBinding> extends BaseAdapter
 {
 
