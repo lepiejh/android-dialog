@@ -1,4 +1,4 @@
-package com.orhanobut.dialog.strategy;
+package com.orhanobut.dialog.dialog;
 
 import com.ved.framework.base.IBaseView;
 

@@ -1,4 +1,4 @@
-package com.orhanobut.dialog.strategy;
+package com.orhanobut.dialog.dialog;
 
 public interface IDialogStrategy {
     void show(String title);
