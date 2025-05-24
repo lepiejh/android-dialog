@@ -18,27 +18,27 @@ public class ActivityCommandBuilder {
         return new ActivityCommandBuilder();
     }
 
-    ActivityCommandBuilder setTarget(Class<?> target) {
+    public ActivityCommandBuilder setTarget(Class<?> target) {
         this.target = target;
         return this;
     }
 
-    ActivityCommandBuilder setBundle(Bundle bundle) {
+    public ActivityCommandBuilder setBundle(Bundle bundle) {
         this.bundle = bundle;
         return this;
     }
 
-    ActivityCommandBuilder setCanonicalName(String canonicalName) {
+    public ActivityCommandBuilder setCanonicalName(String canonicalName) {
         this.canonicalName = canonicalName;
         return this;
     }
 
-    ActivityCommandBuilder setRequestCode(int requestCode) {
+    public ActivityCommandBuilder setRequestCode(int requestCode) {
         this.requestCode = requestCode;
         return this;
     }
 
-    void execute(SingleLiveEvent<Map<String, Object>> liveEvent) {
+    public void execute(SingleLiveEvent<Map<String, Object>> liveEvent) {
         Map<String, Object> params = new HashMap<>();
         if (target != null) {
             params.put(ParameterField.CLASS, target);
