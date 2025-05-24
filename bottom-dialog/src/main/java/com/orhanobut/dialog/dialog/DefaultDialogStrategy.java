@@ -3,7 +3,7 @@ package com.orhanobut.dialog.dialog;
 import com.orhanobut.dialog.manager.DialogManager;
 import com.ved.framework.base.IBaseView;
 
-public class DefaultDialogStrategy implements IDialogStrategy {
+class DefaultDialogStrategy implements IDialogStrategy {
     private final IBaseView<?,?> iBaseView;
 
     public DefaultDialogStrategy(IBaseView<?,?> iBaseView) {

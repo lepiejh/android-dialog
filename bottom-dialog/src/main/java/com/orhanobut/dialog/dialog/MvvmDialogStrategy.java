@@ -3,7 +3,7 @@ package com.orhanobut.dialog.dialog;
 import com.mumu.dialog.MMLoading;
 import com.ved.framework.base.IBaseView;
 
-public class MvvmDialogStrategy implements IDialogStrategy{
+class MvvmDialogStrategy implements IDialogStrategy{
     private MMLoading mmLoading;
     private final IBaseView<?,?> iBaseView;
 

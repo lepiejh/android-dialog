@@ -2,7 +2,7 @@ package com.orhanobut.dialog.dialog;
 
 import com.ved.framework.base.IBaseView;
 
-public class CustomDialogStrategy implements IDialogStrategy {
+class CustomDialogStrategy implements IDialogStrategy {
     private final IBaseView<?,?> iBaseView;
 
     public CustomDialogStrategy(IBaseView<?,?> iBaseView) {
