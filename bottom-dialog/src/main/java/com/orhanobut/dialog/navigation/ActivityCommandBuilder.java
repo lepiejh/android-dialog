@@ -14,7 +14,7 @@ public class ActivityCommandBuilder {
     private String canonicalName;
     private int requestCode = -1;
 
-    static ActivityCommandBuilder create() {
+    public static ActivityCommandBuilder create() {
         return new ActivityCommandBuilder();
     }
 
