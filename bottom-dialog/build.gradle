@@ -43,6 +43,7 @@ dependencies {
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 //    compileOnly 'androidx.appcompat:appcompat:1.5.1'
     compileOnly 'com.github.lepiejh:android-mvvm:v0.0.199'
+    compileOnly 'com.github.lepiejh:arc:v1.2.18'
     compileOnly 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'com.github.getActivity:XXPermissions:18.5'
     api 'io.github.lucksiege:pictureselector:v3.11.1'
