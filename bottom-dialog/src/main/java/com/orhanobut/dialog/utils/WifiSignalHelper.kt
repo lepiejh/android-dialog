@@ -35,7 +35,9 @@ class WifiSignalHelper private constructor() {
                 handler.postDelayed(this, pollingInterval)
             }
         }
-        handler.post(pollingRunnable!!)
+        pollingRunnable?.let {
+            handler.post(it)
+        }
     }
 
     private fun stopPolling() {
@@ -46,6 +48,10 @@ class WifiSignalHelper private constructor() {
     }
 
     fun startListening(callback: (rssi: Int) -> Unit) {
+        if (!wifiManager.isWifiEnabled) {
+            callback(-100)
+            return
+        }
         val initialRssi = wifiManager.connectionInfo?.rssi ?: -100
         callback(initialRssi)
 
