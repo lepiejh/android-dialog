@@ -6,7 +6,7 @@ import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.WindowManager
 
-class BaseCenterDialog(context: Context, theme: Int) : Dialog(context, theme){
+open class BaseCenterDialog(context: Context, theme: Int) : Dialog(context, theme){
 
     init {
         window?.let { win ->
