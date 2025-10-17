@@ -1,4 +1,4 @@
-package com.orhanobut.dialog.view
+package com.orhanobut.dialog.dialog
 
 import android.app.Dialog
 import android.content.Context

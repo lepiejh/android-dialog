@@ -10,7 +10,6 @@ import com.orhanobut.dialog.R
 import com.orhanobut.dialog.adapter.BottomListAdapter
 import com.orhanobut.dialog.mode.BottomListMode
 import com.ved.framework.utils.DpiUtils
-import com.ved.framework.widget.TouchOutsideDialog
 
 class BottomListDialog : TouchOutsideDialog {
     private val mContext: Context
