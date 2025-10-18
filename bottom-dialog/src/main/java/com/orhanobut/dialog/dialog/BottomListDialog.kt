@@ -63,6 +63,5 @@ class BottomListDialog : TouchOutsideDialog {
             win.attributes = lp
         }
         setCanceledOnTouchOutside(false)
-        show()
     }
 }
