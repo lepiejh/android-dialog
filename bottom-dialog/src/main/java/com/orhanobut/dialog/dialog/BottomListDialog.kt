@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.dialog.R
 import com.orhanobut.dialog.adapter.BottomListAdapter
 import com.orhanobut.dialog.mode.BottomListMode
-import com.ved.framework.utils.DpiUtils
+import com.ved.framework.utils.bland.code.SizeUtils
 
 class BottomListDialog : TouchOutsideDialog {
     private val mContext: Context
@@ -29,7 +29,7 @@ class BottomListDialog : TouchOutsideDialog {
         if (data.size >= 7) {
             this.window?.setLayout(
                     WindowManager.LayoutParams.MATCH_PARENT,
-                    DpiUtils.dip2px(mContext, 45 * 9)
+                SizeUtils.dp2px(45 * 9f)
                 )
         } else {
             this.window?.setLayout(

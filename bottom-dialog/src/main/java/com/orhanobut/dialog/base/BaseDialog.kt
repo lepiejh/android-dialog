@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import com.orhanobut.dialog.R
 import com.ved.framework.utils.ScreenUtils
 import com.ved.framework.utils.ToastUtils
+import com.ved.framework.utils.bland.code.SizeUtils
 
 /**
  * Dialog通用样式
@@ -73,17 +74,17 @@ abstract class BaseDialog : DialogFragment() {
 
             //设置dialog宽度
             if (mWidth == 0) {
-                params.width = ScreenUtils.getScreenWidth() - 2 * ScreenUtils.dp2px(mMargin.toFloat()
+                params.width = ScreenUtils.getScreenWidth() - 2 * SizeUtils.dp2px(mMargin.toFloat()
                 )
             } else {
-                params.width = ScreenUtils.dp2px(mWidth.toFloat())
+                params.width = SizeUtils.dp2px(mWidth.toFloat())
             }
 
             //设置dialog高度
             if (mHeight == 0) {
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT
             } else {
-                params.height = ScreenUtils.dp2px(mHeight.toFloat())
+                params.height = SizeUtils.dp2px(mHeight.toFloat())
             }
 
             //设置dialog动画
