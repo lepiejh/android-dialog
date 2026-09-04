@@ -1,6 +1,6 @@
 package com.orhanobut.dialog.utils;
 
-import android.util.Log;
+import com.ved.framework.utils.KLog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,8 +31,7 @@ public class FileSizeUtil
                 blockSize = getFileSize(file);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "获取文件大小失败!");
+            KLog.e(e.getMessage());
         }
         return FormetFileSize(blockSize, sizeType);
     }
@@ -53,8 +52,7 @@ public class FileSizeUtil
                 blockSize = getFileSize(file);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG,"获取文件大小失败!");
+            KLog.e(e.getMessage());
         }
         return FormetFileSize(blockSize);
     }
@@ -74,7 +72,7 @@ public class FileSizeUtil
             size = fis.available();
         } else {
             file.createNewFile();
-            Log.e(TAG,"获取文件大小不存在!");
+            KLog.e(TAG,"获取文件大小不存在!");
         }
         return size;
     }

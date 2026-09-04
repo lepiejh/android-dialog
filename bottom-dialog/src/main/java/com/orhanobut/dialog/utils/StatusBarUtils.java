@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.orhanobut.dialog.R;
+import com.ved.framework.utils.KLog;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -34,7 +35,7 @@ public class StatusBarUtils
                 statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            KLog.e(e.getMessage());
         }
         return statusBarHeight;
     }
@@ -191,7 +192,7 @@ public class StatusBarUtils
             Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
             extraFlagField.invoke(window, isDark ? darkModeFlag : 0, darkModeFlag);
         } catch (Exception e) {
-            e.printStackTrace();
+            KLog.e(e.getMessage());
         }
     }
 
@@ -221,7 +222,7 @@ public class StatusBarUtils
                 meizuFlags.setInt(lp, value);
                 window.setAttributes(lp);
             } catch (Exception e) {
-                e.printStackTrace();
+                KLog.e(e.getMessage());
             }
         }
     }

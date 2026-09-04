@@ -3,6 +3,8 @@ package com.orhanobut.dialog.utils;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.ved.framework.utils.KLog;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -120,7 +122,7 @@ public class OSUtils
                         try {
                             rom.setBaseVersion(Integer.parseInt(versionName.split("[Vv]")[1]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -143,7 +145,7 @@ public class OSUtils
                             rom.setVersion(version);
                             rom.setBaseVersion(Integer.parseInt(version.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -161,7 +163,7 @@ public class OSUtils
                             rom.setVersion(version);
                             rom.setBaseVersion(Integer.parseInt(version.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -179,7 +181,7 @@ public class OSUtils
                             rom.setVersion(version);
                             rom.setBaseVersion(Integer.parseInt(version.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -194,7 +196,7 @@ public class OSUtils
                             rom.setVersion(versionStr);
                             rom.setBaseVersion(Integer.parseInt(versionStr.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -212,7 +214,7 @@ public class OSUtils
                             rom.setVersion(version);
                             rom.setBaseVersion(Integer.parseInt(version.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -230,7 +232,7 @@ public class OSUtils
                             rom.setVersion(version);
                             rom.setBaseVersion(Integer.parseInt(version.split("\\.")[0]));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            KLog.e(e.getMessage());
                         }
                     }
                 }
@@ -296,13 +298,13 @@ public class OSUtils
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            KLog.e(e.getMessage());
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    KLog.e(e.getMessage());
                 }
             }
         }

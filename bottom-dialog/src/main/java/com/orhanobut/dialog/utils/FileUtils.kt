@@ -26,7 +26,7 @@ class FileUtils {
                         .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                         .get()
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    KLog.e(e.message)
                     KLog.i("lx_154", "文件下载失败 : " + e.message)
                 }
                 if (bitmap[0] != null) {
@@ -40,7 +40,7 @@ class FileUtils {
                 }
             }.start()
         } catch (e: Exception) {
-            e.printStackTrace()
+            KLog.e(e.message)
             KLog.i("lx_154", "文件下载失败 : " + e.message)
         }
     }
@@ -62,14 +62,14 @@ class FileUtils {
             bmp?.compress(Bitmap.CompressFormat.JPEG, 100, fos)
             fos.flush()
         } catch (e: FileNotFoundException) {
-            e.printStackTrace()
+            KLog.e(e.message)
         } catch (e: IOException) {
-            e.printStackTrace()
+            KLog.e(e.message)
         } finally {
             try {
                 fos?.close()
             } catch (e: IOException) {
-                e.printStackTrace()
+                KLog.e(e.message)
             }
         }
 
